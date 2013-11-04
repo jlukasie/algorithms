@@ -62,11 +62,11 @@ template <typename T> linked_list<T>::linked_list()
     
 template <typename T> linked_list<T>::~linked_list()
 {
-    list_node<T> *it = head;
+    auto *it = head;
     
     while(it)
     {
-        list_node<T> *temp = it;
+        auto *temp = it;
         it = it->next;
         delete temp;
     }
@@ -83,7 +83,7 @@ template <typename T> void linked_list<T>::insert(const T data)
     }
     else
     {
-        list_node<T> *it = head;
+        auto *it = head;
         while (it->next)
         {
             it = it->next;
@@ -95,7 +95,7 @@ template <typename T> void linked_list<T>::insert(const T data)
 template <typename T> void linked_list<T>::remove(const T data)
 {
     // find the node and delete it
-    list_node<T> *it = head;
+    auto *it = head;
     
     // first one
     if (it->data == data)
@@ -109,7 +109,7 @@ template <typename T> void linked_list<T>::remove(const T data)
         {
             if (it->next->data == data)
             {
-                list_node<T> *temp = it->next;
+                auto *temp = it->next;
                 it->next = temp->next;
                 delete temp;
                 break;

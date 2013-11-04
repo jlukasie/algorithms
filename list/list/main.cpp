@@ -24,7 +24,9 @@ int main(int argc, const char * argv[])
     my_list.insert(60);
     my_list.insert(70);
     
-    my_list.remove(60);
+    my_list.remove(40);
+    my_list.remove(10);
+    my_list.remove(34);
     return 0;
 }
 
