@@ -7,12 +7,12 @@
 //
 
 #include <iostream>
+#include "hash_table.h"
 
 int main(int argc, const char * argv[])
 {
 
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    hash_table<char *, int> babbys_first_hash_table(2000);
     return 0;
 }
 

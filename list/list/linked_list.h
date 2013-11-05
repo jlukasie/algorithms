@@ -25,9 +25,6 @@ public:
 private:
     T data;
     list_node *next;
-    
-    list_node(const list_node<T> &list_node);
-    list_node &operator=(const list_node<T> &list_node);
 };
     
 template <typename T>
@@ -53,6 +50,10 @@ public:
     ~linked_list();
 private:
     list_node<T> *head;
+    
+    // unused copy/assignment
+    linked_list(const linked_list<T> &);
+    linked_list &operator=(const linked_list<T> &);
 };
     
 template <typename T> linked_list<T>::linked_list()

@@ -28,6 +28,8 @@
 		5249DB3E1825EAD600D6D557 /* hash_table */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hash_table; sourceTree = BUILT_PRODUCTS_DIR; };
 		5249DB411825EAD600D6D557 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5249DB431825EAD600D6D557 /* hash_table.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = hash_table.1; sourceTree = "<group>"; };
+		5249DB6218277A6F00D6D557 /* hash_table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hash_table.h; sourceTree = "<group>"; };
+		5249DB6318277AA200D6D557 /* linked_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = linked_list.h; path = ../../list/list/linked_list.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +62,10 @@
 		5249DB401825EAD600D6D557 /* hash_table */ = {
 			isa = PBXGroup;
 			children = (
+				5249DB6318277AA200D6D557 /* linked_list.h */,
 				5249DB411825EAD600D6D557 /* main.cpp */,
 				5249DB431825EAD600D6D557 /* hash_table.1 */,
+				5249DB6218277A6F00D6D557 /* hash_table.h */,
 			);
 			path = hash_table;
 			sourceTree = "<group>";
