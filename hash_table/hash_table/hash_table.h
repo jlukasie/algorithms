@@ -12,29 +12,71 @@
 #include <utility>
 #include "linked_list.h"
 
+#define HASH_SIZE 2000
+
 using namespace algorithms;
 
 template <typename K, typename V>
 class hash_table
 {
 public:
+    hash_table();
     hash_table(int size);
-    int hash(V value);
+    int hash(K  key);
+    int hash(K* key);
+    void insert(K key, V value);
 private:
     linked_list<std::pair<K,V> > *hash_lists;
 };
 
 #endif
 
+template<typename K, typename V> hash_table<K,V>::hash_table()
+{
+    hash_lists = new linked_list< std::pair<K,V> >[HASH_SIZE];
+}
+
 template<typename K, typename V> hash_table<K,V>::hash_table(int size)
 {
     hash_lists = new linked_list< std::pair<K,V> >[size];
 }
 
-template<typename K, typename V> int hash_table<K, V>::hash(V value)
+template<typename K, typename V> int hash_table<K, V>::hash(K key)
 {
     int sum = 0;
     int result = 0;
-    char *ptr = static_cast<char *>(value);
+    size_t size = sizeof(K);
+    unsigned char *ptr = reinterpret_cast<unsigned char *>(&key);
+    
+    // sum up raw data
+    for (int i = 0; i < size; ++i)
+    {
+        sum += *ptr;
+        ptr++;
+    }
+    
+    // divide by prime num (~3 entries per list for 2000 buckets)
+    result = sum %701;
+    
+    return result;
+}
+
+template<typename K, typename V> int hash_table<K, V>::hash(K* key)
+{
+    int sum = 0;
+    int result = 0;
+    size_t size = sizeof(K);
+    unsigned char *ptr = reinterpret_cast<unsigned char *>(key);
+    
+    // sum up raw data
+    for (int i = 0; i < size; ++i)
+    {
+        sum += *ptr;
+        ptr++;
+    }
+    
+    // divide by prime num (~3 entries per list for 2000 buckets)
+    result = sum %701;
+    
     return result;
 }

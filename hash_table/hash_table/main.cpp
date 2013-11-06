@@ -9,10 +9,20 @@
 #include <iostream>
 #include "hash_table.h"
 
+using namespace std;
+
 int main(int argc, const char * argv[])
 {
 
-    hash_table<char *, int> babbys_first_hash_table(2000);
+    hash_table<int, int> *babbys_first_hash_table = new hash_table<int, int>();
+    
+    for (int i = 0; i < 10; ++i)
+    {
+        int random = rand();
+        cout << babbys_first_hash_table->hash(random) <<endl;
+    }
+    
+    
     return 0;
 }
 
