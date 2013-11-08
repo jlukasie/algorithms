@@ -12,9 +12,9 @@
 #include <utility>
 #include "linked_list.h"
 
-#define HASH_SIZE 2000
-
-using namespace algorithms;
+#define DEFAULT_HASH_SIZE 2000
+#define DEFAULT_DIVISOR 701
+//using namespace algorithms;
 
 template <typename K, typename V>
 class hash_table
@@ -25,6 +25,28 @@ public:
     int hash(K  key);
     int hash(K* key);
     void insert(K key, V value);
+    std::pair<K, V> find(K key);
+    
+    class proxy
+    {
+    public:
+        proxy(hash_table<K, V> &h, K key) : h(h), key(key){}
+        
+        operator V() const
+        {
+            
+        }
+        
+        proxy &operator=(V const &value)
+        {
+            h.insert(key, value);
+            return *this;
+        }
+    private:
+        hash_table<K, V> &h;
+        K key;
+    };
+    
 private:
     linked_list<std::pair<K,V> > *hash_lists;
 };
@@ -33,12 +55,18 @@ private:
 
 template<typename K, typename V> hash_table<K,V>::hash_table()
 {
-    hash_lists = new linked_list< std::pair<K,V> >[HASH_SIZE];
+    hash_lists = new linked_list< std::pair<K,V> >[DEFAULT_HASH_SIZE];
 }
 
 template<typename K, typename V> hash_table<K,V>::hash_table(int size)
 {
     hash_lists = new linked_list< std::pair<K,V> >[size];
+}
+
+template<typename K, typename V> std::pair<K, V> hash_table<K,V>::find(K key)
+{
+    int index = hash(key);
+    auto list_ptr = hash_lists[index];
 }
 
 template<typename K, typename V> int hash_table<K, V>::hash(K key)
@@ -56,7 +84,7 @@ template<typename K, typename V> int hash_table<K, V>::hash(K key)
     }
     
     // divide by prime num (~3 entries per list for 2000 buckets)
-    result = sum %701;
+    result = sum %DEFAULT_DIVISOR;
     
     return result;
 }
@@ -76,7 +104,7 @@ template<typename K, typename V> int hash_table<K, V>::hash(K* key)
     }
     
     // divide by prime num (~3 entries per list for 2000 buckets)
-    result = sum %701;
+    result = sum %DEFAULT_DIVISOR;
     
     return result;
 }
