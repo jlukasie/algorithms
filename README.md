@@ -1,3 +1,3 @@
 algorithms
 ==========
-Hash table compatible with STL iterators.
+Hash table using buckets which are made up of lists compatible with STL iterators.
